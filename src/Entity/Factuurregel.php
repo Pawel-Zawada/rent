@@ -14,10 +14,17 @@ class Factuurregel
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+    private $factuurregelcode;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Factuur")
+     * @ORM\JoinColumn(name="factuurnummer", referencedColumnName="factuurnummer")
+     */
     private $factuurnummer;
 
     /**
-     * @ORM\Column(type="string" length=45)
+     * @ORM\OneToOne(targetEntity="App\Entity\Auto")
+     * @ORM\JoinColumn(name="kenteken", referencedColumnName="kenteken")
      */
     private $kenteken;
 

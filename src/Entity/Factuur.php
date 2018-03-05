@@ -22,19 +22,14 @@ class Factuur
     private $factuurdatum;
 
     /**
-     * @ORM\Column(type="string", length=45)
-     */
-    private $kenteken;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Klant", inversedBy="klantcode")
-     * @ORM\Column(type="integer", length=11)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Klant")
+     * @ORM\JoinColumn(name="klantcode", referencedColumnName="klantcode")
      */
     private $klantcode;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Medewerker", inversedBy="medewerkerscode")
-     * @ORM\Column(type="integer", length=11)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Medewerker")
+     * @ORM\JoinColumn(name="medewerkerscode", referencedColumnName="medewerkerscode")
      */
     private $medewerkerscode;
 }

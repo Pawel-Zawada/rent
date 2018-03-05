@@ -17,6 +17,11 @@ class Klant
     private $klantcode;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Factuur", mappedBy="klantcode")
+     */
+    private $facturen;
+
+    /**
      * @ORM\Column(type="string", length=11)
      */
     private $voorletters;
