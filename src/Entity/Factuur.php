@@ -22,14 +22,8 @@ class Factuur
     private $factuurdatum;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Klant")
-     * @ORM\JoinColumn(name="klantcode", referencedColumnName="klantcode")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $klantcode;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Medewerker")
-     * @ORM\JoinColumn(name="medewerkerscode", referencedColumnName="medewerkerscode")
-     */
-    private $medewerkerscode;
+    private $user_id;
 }
