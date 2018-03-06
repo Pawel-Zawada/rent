@@ -3,19 +3,25 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface
+class User extends BaseUser
 {
 	/**
 	 * @ORM\Id
-	 * @ORM\GeneratedValue
+	 * @ORM\GeneratedValue(strategy="AUTO")
 	 * @ORM\Column(type="integer", length=11)
 	 */
-	private $id;
+	protected $id;
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Factuur", mappedBy="klantcode")
@@ -23,96 +29,160 @@ class User implements UserInterface
 	private $facturen;
 
 	/**
-	 * @ORM\Column(type="string", length=11)
+	 * @ORM\Column(type="string", length=11, nullable=true)
 	 */
 	private $voorletters;
 
 	/**
-	 * @ORM\Column(type="string", length=11)
+	 * @ORM\Column(type="string", length=11, nullable=true)
 	 */
 	private $tussenvoegsels;
 
 	/**
-	 * @ORM\Column(type="string", length=45)
+	 * @ORM\Column(type="string", length=45, nullable=true)
 	 */
 	private $achternaam;
 
 	/**
-	 * @ORM\Column(type="string", length=45)
+	 * @ORM\Column(type="string", length=45, nullable=true)
 	 */
 	private $adres;
 
 	/**
-	 * @ORM\Column(type="string", length=7)
+	 * @ORM\Column(type="string", length=7, nullable=true)
 	 */
 	private $postcode;
 
 	/**
-	 * @ORM\Column(type="string", length=45)
+	 * @ORM\Column(type="string", length=45, nullable=true)
 	 */
 	private $woonplaats;
 
-	/**
-	 * @ORM\Column(type="string", length=45)
-	 */
-	private $username;
+    /**
+     * @return mixed
+     */
+    public function getAchternaam()
+    {
+        return $this->achternaam;
+    }
 
-	/**
-	 * @ORM\Column(type="string", length=45)
-	 */
-	private $password;
+    /**
+     * @param mixed $achternaam
+     */
+    public function setAchternaam($achternaam): void
+    {
+        $this->achternaam = $achternaam;
+    }
 
-	public function __construct()
-	{
-		$this->isActive = true;
-		// may not be needed, see section on salt below
-		// $this->salt = md5(uniqid('', true));
-	}
+    /**
+     * @return mixed
+     */
+    public function getAdres()
+    {
+        return $this->adres;
+    }
 
-	public function getUsername()
-	{
-		return $this->username;
-	}
+    /**
+     * @param mixed $adres
+     */
+    public function setAdres($adres): void
+    {
+        $this->adres = $adres;
+    }
 
-	public function setUsername($username)
-	{
-		$this->username = $username;
-	}
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	public function getPlainPassword()
-	{
-		return $this->password;
-	}
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
 
-	public function setPlainPassword($password)
-	{
-		$this->plainPassword = $password;
-	}
+    /**
+     * @return mixed
+     */
+    public function getFacturen()
+    {
+        return $this->facturen;
+    }
 
-	public function getPassword()
-	{
-		return $this->password;
-	}
+    /**
+     * @param mixed $facturen
+     */
+    public function setFacturen($facturen): void
+    {
+        $this->facturen = $facturen;
+    }
 
-	public function setPassword($password)
-	{
-		$this->password = $password;
-	}
+    /**
+     * @return mixed
+     */
+    public function getVoorletters()
+    {
+        return $this->voorletters;
+    }
 
+    /**
+     * @param mixed $voorletters
+     */
+    public function setVoorletters($voorletters): void
+    {
+        $this->voorletters = $voorletters;
+    }
 
-	public function getSalt()
-	{
-		// you *may* need a real salt depending on your encoder
-		// see section on salt below
-		return null;
-	}
+    /**
+     * @return mixed
+     */
+    public function getTussenvoegsels()
+    {
+        return $this->tussenvoegsels;
+    }
 
-	public function getRoles()
-	{
-		return array('ROLE_USER');
-	}
+    /**
+     * @param mixed $tussenvoegsels
+     */
+    public function setTussenvoegsels($tussenvoegsels): void
+    {
+        $this->tussenvoegsels = $tussenvoegsels;
+    }
 
-	public function eraseCredentials()
-	{
-	}
+    /**
+     * @return mixed
+     */
+    public function getPostcode()
+    {
+        return $this->postcode;
+    }
+
+    /**
+     * @param mixed $postcode
+     */
+    public function setPostcode($postcode): void
+    {
+        $this->postcode = $postcode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWoonplaats()
+    {
+        return $this->woonplaats;
+    }
+
+    /**
+     * @param mixed $woonplaats
+     */
+    public function setWoonplaats($woonplaats): void
+    {
+        $this->woonplaats = $woonplaats;
+    }
 }
